@@ -59,6 +59,7 @@ function weatherQuery(weathUrl) {
       })
       .then(function (data) {
         drawWeather(data);
+        console.log(data)
           /*var resultArray = data;
           displayResult(resultArray);
           return resultArray;*/
@@ -74,8 +75,9 @@ function drawWeather( d ) {
 	//var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32); 
 	
 	document.getElementById('description').innerHTML = d.weather[0].description;
-	document.getElementById('temp').innerHTML = celcius + '&deg;';
+	//document.getElementById('temp').innerHTML = farenheit + '&deg;';
 	document.getElementById('location').innerHTML = d.name;
+  document.getElementById('temp').innerHTML = d.main.temp;
 };
 
 //need
