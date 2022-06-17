@@ -9,8 +9,13 @@
         - Temp, wind and humidity
     - You are also able to view recent searches 
 
-# Screenshot
-![Screenshot of Day-Scheduler]
+## Visual Overview of Weather Dashboard
+    - Home
+![Screenshot of Weather Dashboard](./assets/img/first.png)
+
+    - Results 
+![Results](./assets/img/second.png)
+
 
 
 repolink: 

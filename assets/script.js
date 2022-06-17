@@ -43,7 +43,8 @@ function weatherQuery(weathUrl) {
 
 // help display?
 function drawWeather(data) {
-	//document.getElementById('description').innerHTML = data.weather[0].description;
+	document.getElementById('description').innerHTML = data.weather[0].description;
+  //document.getElementById('icon').src = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/img/w/d.weather[0].icon}.png"  + city + "&appid=" + apiKey + "&units=imperial";
 	document.getElementById('location').innerHTML = data.name;
   document.getElementById('temp').innerHTML = 'Temp: ' + data.main.temp + '&deg;F';
   document.getElementById('wind').innerHTML = 'Wind: ' + data.wind.speed + ' MPH';
@@ -85,8 +86,6 @@ function weatherQuery2(fiveWeath) {
         fiveWeather(data);
         console.log(data);
       })
-      /*window.onload = function() {
-        weatherBalloon( 6167865 );*/
 };
 
 function fiveWeather(data) {
