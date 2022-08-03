@@ -2,33 +2,28 @@
 var city = document.querySelector('.search-input').value;
 var searchBtn = document.querySelector('.search-btn');
 var apiKey = "d643534191603c995f211a0eaffc23c6";
-//var city;
 
 
-//click event to built url??
+
+//click event to built url
 function searchClick(event) {
     event.preventDefault();
     var city = document.querySelector('.search-input').value;
     console.log(city)
     // build first url request
-  var weathUrl = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
-  var fiveWeath = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial&exclude=current,minutely,hourly,alerts";
+  var weathUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial&appid=d643534191603c995f211a0eaffc23c6";
+  var fiveWeath = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial&exclude=current,minutely,hourly,alerts&appid=d643534191603c995f211a0eaffc23c6";
  
     weatherQuery(weathUrl);
     weatherQuery2(fiveWeath);
 };
 
 
-// shows results? 
+// get results
 function weatherQuery(weathUrl) {
-  //fetch with built URL to return recipe info
   fetch(weathUrl, {
       method: 'GET',
-      headers: {
-           'apiKey': "d643534191603c995f211a0eaffc23c6",
-           'weather-host': "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q="  + city + "&appid=" + apiKey + "&units=imperial",
-  
-      }
+      url: "https://api.openweathermap.org/data/2.5/weather?q="  + city + "&appid=" + apiKey + "&units=imperial&appid=d643534191603c995f211a0eaffc23c6"
   })
 
       .then(function (response) {
@@ -41,10 +36,10 @@ function weatherQuery(weathUrl) {
 };
 
 
-// help display?
+// displays data for current days weather
 function drawWeather(data) {
 	document.getElementById('description').innerHTML = data.weather[0].description;
-  //document.getElementById('icon').src = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/img/w/d.weather[0].icon}.png"  + city + "&appid=" + apiKey + "&units=imperial";
+  //document.getElementById('icon').src = "https://api.openweathermap.org/img/w/d.weather[0].icon}.png"  + city + "&appid=" + apiKey + "&units=imperial";
 	document.getElementById('location').innerHTML = data.name;
   document.getElementById('temp').innerHTML = 'Temp: ' + data.main.temp + '&deg;F';
   document.getElementById('wind').innerHTML = 'Wind: ' + data.wind.speed + ' MPH';
@@ -56,6 +51,7 @@ searchBtn.addEventListener('click', searchClick);
 
 //const city = document.querySelector('.search-input')
 //const btnSearchEl = document.getElementById('btnSearch')
+// enter key, didn't work? 
 if (city) {
 city.addEventListener('keydown', (event) => {
   if (event.key === "Enter") {
@@ -65,18 +61,14 @@ city.addEventListener('keydown', (event) => {
 
 
 // 5 days 
-// "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial"*/
+// "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial"*/
 
 
 function weatherQuery2(fiveWeath) {
   //fetch with built URL to return recipe info
   fetch(fiveWeath, {
       method: 'GET',
-      headers: {
-           'apiKey': "d643534191603c995f211a0eaffc23c6",
-           'weather-host': "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial&exclude=current,minutely,hourly,alerts" ,
-  
-      }
+      url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial&exclude=current,minutely,hourly,alerts&appid=d643534191603c995f211a0eaffc23c6", 
   })
 
       .then(function (response) {
@@ -88,6 +80,7 @@ function weatherQuery2(fiveWeath) {
       })
 };
 
+//displays data for 5 day forcast at 12 pm 
 function fiveWeather(data) {
 	document.getElementById('date1').innerHTML = data.list[1].clouds.dt_txt;
   document.getElementById('temp1').innerHTML = 'Temp: ' + data.list[1].main.temp + '&deg;F';
@@ -114,3 +107,19 @@ function fiveWeather(data) {
   document.getElementById('wind5').innerHTML = 'Wind: ' + data.list[33].wind.speed + ' MPH';
   document.getElementById('humid5').innerHTML = 'Humidity: ' + data.list[33].main.humidity + '%';
 };
+
+// recent searches
+
+/*function recentSearches() {
+  //gets array stored in favorites
+  var retrievedSearches = localStorage.getItem("favorites");
+  // If array is not empty run codeblock, parse array, slice the number of items we want, add it to HTML 
+  if (retrievedSearches != null) {
+   var newFavs = JSON.parse(localStorage.getItem("favorites"));
+   var testFavorites = newFavs.slice(0, 5)
+   document.getElementById("recents").innerHTML = testFavorites
+   console.log(testFavorites);
+  }
+}
+
+searchBtn.addEventListener('click', recentSearches);*/
